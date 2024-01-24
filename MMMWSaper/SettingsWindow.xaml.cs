@@ -26,6 +26,8 @@ namespace MMMWSaper
             boardWidthSlider.Value = Properties.Settings.Default.BoardWidth;
             bombCountSlider.Maximum = Math.Floor(boardWidthSlider.Value * boardHeightSlider.Value / 2);
             bombCountSlider.Value = Properties.Settings.Default.BombsCount;
+            boardWidthSlider.ValueChanged += Slider_ValueChanged; 
+            boardHeightSlider.ValueChanged += Slider_ValueChanged; 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
