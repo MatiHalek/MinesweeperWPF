@@ -32,5 +32,10 @@ namespace MMMWSaper
         {
 
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            bombCountSlider.Maximum = Math.Floor(boardWidthSlider.Value * boardHeightSlider.Value / 2);
+        }
     }
 }
