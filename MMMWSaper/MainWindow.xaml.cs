@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MMMWSaper
 {
@@ -16,24 +18,47 @@ namespace MMMWSaper
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly List<Cell> Cells = [];
+        private readonly List<Button> Buttons = [];
+        private UniformGrid? Grid;
+        private readonly SolidColorBrush[] Colors = [Brushes.DodgerBlue, Brushes.Green, Brushes.Red, Brushes.DarkBlue, Brushes.DarkRed, Brushes.DarkCyan, Brushes.Black, Brushes.Gray];
+        private readonly DispatcherTimer Timer = new();
+        private bool IsPlaying = false;
+        private uint seconds = 0;
+        private uint BoardWidth = 8;
+        private uint BoardHeight = 8;
+        private uint BombsCount = 10;
         public MainWindow()
         {
             InitializeComponent();
+            Timer.Tick += Timer_Tick;
+            Timer.Interval = new TimeSpan(0, 0, 1);
+            StartGame();
         }
 
-        private void NewGame_Click(object sender, RoutedEventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            seconds++;
+            timerLabel.Content = seconds;
+        }
+        private void StartGame()
         {
 
+        }
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-
+            //SettingsWindow settings = new();
+            //settings.ShowDialog();
         }
 
         private void Button_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Buttons.Add((Button)sender);
         }
 
         private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -48,7 +73,8 @@ namespace MMMWSaper
 
         private void UniformGrid_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Grid = (UniformGrid)sender;
+            Grid.Columns = (int)BoardWidth;
         }
     }
 }
