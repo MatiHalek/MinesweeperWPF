@@ -112,6 +112,23 @@ namespace MMMWSaper
                 return;
             c.IsRevealed = true;
             b.Background = Brushes.LightBlue;
+            if(c.IsBomb)
+            {
+                Timer.Stop();
+                List<Cell> bombs = Cells.Where(cell => cell.IsBomb).ToList();    
+                foreach (Cell cell in bombs)
+                {
+                    Button button = Buttons[(int)(cell.PositionY * BoardWidth + cell.PositionX)];
+                    button.Foreground = Brushes.Black;
+                    button.Background = Brushes.Red;
+                    button.Content = "💣";
+                }
+                Properties.Settings.Default.GamesPlayed++;
+                Properties.Settings.Default.Save();
+                MessageBox.Show($"Niestety, ale ta gra kończy się Twoją przegraną.\n\nRozegrane gry: {Properties.Settings.Default.GamesPlayed}\nWygrane gry: {Properties.Settings.Default.GamesWon}\nProcent wygranych: {Math.Round((float)Properties.Settings.Default.GamesWon / Properties.Settings.Default.GamesPlayed * 100)}%", "Porażka", MessageBoxButton.OK, MessageBoxImage.Information);
+                IsPlaying = false;
+                return;
+            }
         }
 
         private void UniformGrid_Loaded(object sender, RoutedEventArgs e)
