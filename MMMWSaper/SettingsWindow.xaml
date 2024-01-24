@@ -27,7 +27,7 @@
         <TextBlock Text="{Binding ElementName=boardWidthSlider, Path=Value}" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBlock Text="{Binding ElementName=boardHeightSlider, Path=Value}" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold"/>
         <TextBlock Text="{Binding ElementName=bombCountSlider, Path=Value}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold"/>
-        <Border CornerRadius="5" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" Background="DarkBlue" BorderThickness="0" Margin="10">
+        <Border CornerRadius="5" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" Background="DodgerBlue" BorderThickness="0" Margin="10">
             <Button Content="Zatwierdź" FontWeight="Bold" Padding="8, 3" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="17" Click="Button_Click"/>
         </Border>
     </Grid>
