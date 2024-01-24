@@ -43,7 +43,33 @@ namespace MMMWSaper
         }
         private void StartGame()
         {
-
+            BoardWidth = Properties.Settings.Default.BoardWidth;
+            BoardHeight = Properties.Settings.Default.BoardHeight;
+            BombsCount = Properties.Settings.Default.BombsCount;
+            itemsControl.ItemsSource = null;
+            if (Grid is not null)
+                Grid.Columns = (int)BoardWidth;
+            Buttons.Clear();
+            Cells.Clear();
+            List<uint> numbers = [];
+            for(uint i = 0; i < (BoardWidth * BoardHeight); i++)
+            {
+                numbers.Add(i);
+                Cells.Add(new Cell(i % BoardWidth, i / BoardWidth, false, false, false));
+            }
+            itemsControl.ItemsSource = Cells;
+            for(uint i = 0; i < BombsCount; i++)
+            {
+                Random r = new();
+                uint bomb = numbers[r.Next(0, numbers.Count)];
+                Cells[(int)bomb].IsBomb = true;
+                numbers.Remove(bomb);
+            }
+            Timer.Start();
+            timerLabel.Content = 0;
+            bombsLabel.Content = BombsCount;
+            seconds = 0;
+            IsPlaying = true;
         }
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
