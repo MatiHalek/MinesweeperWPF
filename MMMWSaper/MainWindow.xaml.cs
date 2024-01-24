@@ -78,8 +78,8 @@ namespace MMMWSaper
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            //SettingsWindow settings = new();
-            //settings.ShowDialog();
+            SettingsWindow settings = new();
+            settings.ShowDialog();
         }
 
         private void Button_Loaded(object sender, RoutedEventArgs e)
@@ -129,6 +129,22 @@ namespace MMMWSaper
                 IsPlaying = false;
                 return;
             }
+            List<Cell> nearestBombs = Cells.Where(cell => cell.IsBomb && Math.Abs((int)c.PositionX - (int)cell.PositionX) <= 1 && Math.Abs((int)c.PositionY - (int)cell.PositionY) <= 1).ToList();
+            if(nearestBombs.Count > 0 )
+            {
+                b.Foreground = Colors[nearestBombs.Count - 1];
+                b.Content = nearestBombs.Count;
+            }
+            if(Cells.Where(cell => !cell.IsRevealed).Count() == BombsCount)
+            {
+                Timer.Stop();
+                Properties.Settings.Default.GamesPlayed++;
+                Properties.Settings.Default.GamesWon++;
+                Properties.Settings.Default.Save();
+                MessageBox.Show($"Gratulacje, wygrana!.\n\nRozegrane gry: {Properties.Settings.Default.GamesPlayed}\nWygrane gry: {Properties.Settings.Default.GamesWon}\nProcent wygranych: {Math.Round((float)Properties.Settings.Default.GamesWon / Properties.Settings.Default.GamesPlayed * 100)}%", "Wygrana", MessageBoxButton.OK, MessageBoxImage.Information);
+                IsPlaying = false;
+            }
+
         }
 
         private void UniformGrid_Loaded(object sender, RoutedEventArgs e)
