@@ -10,13 +10,14 @@
         <Menu>
             <MenuItem Header="_Opcje">
                 <MenuItem Header="_Nowa gra" Click="NewGame_Click"/>
+                <Separator/>
                 <MenuItem Header="_Ustawienia rozgrywki" Click="Settings_Click"/>
             </MenuItem>
         </Menu>
         <ItemsControl x:Name="itemsControl">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button FontFamily="Franklin Gothic" FontSize="24" Width="50" Height="50" CommandParameter="{Binding }" FontWeight="Bold" Loaded="Button_Loaded" MouseRightButtonUp="Button_MouseRightButtonUp" Click="Button_Click">
+                    <Button BorderBrush="Black" FontFamily="Franklin Gothic" FontSize="24" Width="50" Height="50" CommandParameter="{Binding }" FontWeight="Bold" Loaded="Button_Loaded" MouseRightButtonUp="Button_MouseRightButtonUp" Click="Button_Click">
                         <Button.Background>
                             <RadialGradientBrush>
                                 <RadialGradientBrush.GradientStops>
@@ -43,7 +44,7 @@
                 <Label Content="⏰" FontSize="24"/>
                 <Label FontSize="24" x:Name="timerLabel"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
                 <Label FontSize="24" x:Name="bombsLabel"/>
                 <Label Content="💣"  FontSize="24"/>
             </StackPanel>
