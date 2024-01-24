@@ -20,5 +20,35 @@ namespace MMMWSaper
         {
             InitializeComponent();
         }
+
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UniformGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMMWSaper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Saper" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="_Opcje">
+                <MenuItem Header="_Nowa gra" Click="NewGame_Click"/>
+                <MenuItem Header="_Ustawienia rozgrywki" Click="Settings_Click"/>
+            </MenuItem>
+        </Menu>
+        <ItemsControl x:Name="itemsControl">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button FontFamily="Franklin Gothic" FontSize="24" Width="50" Height="50" CommandParameter="{Binding }" FontWeight="Bold" Loaded="Button_Loaded" MouseRightButtonUp="Button_MouseRightButtonUp" Click="Button_Click">
+                        <Button.Background>
+                            <RadialGradientBrush>
+                                <RadialGradientBrush.GradientStops>
+                                    <GradientStop Color="#881E90FF" Offset="0"/>
+                                    <GradientStop Color="#EE1E90FF" Offset="1"/>
+                                </RadialGradientBrush.GradientStops>
+                            </RadialGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Loaded="UniformGrid_Loaded"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="⏰" FontSize="24"/>
+                <Label FontSize="24" x:Name="timerLabel"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label FontSize="24" x:Name="bombsLabel"/>
+                <Label Content="💣"  FontSize="24"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </Window>
