@@ -22,5 +22,6 @@ namespace MMMWSaper
             IsFlagged = isFlagged;
             IsBomb = isBomb;
         }
+        public Cell() { }
     }
 }
