@@ -32,7 +32,11 @@ namespace MMMWSaper
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Properties.Settings.Default.BoardHeight = (uint)boardHeightSlider.Value;
+            Properties.Settings.Default.BoardWidth = (uint)boardWidthSlider.Value;
+            Properties.Settings.Default.BombsCount = (uint)bombCountSlider.Value;
+            Properties.Settings.Default.Save();
+            Close();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
