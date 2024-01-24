@@ -89,12 +89,29 @@ namespace MMMWSaper
 
         private void Button_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            if (!IsPlaying)
+                return;
+            Button b = (Button)sender;
+            Cell c = (Cell)b.CommandParameter;
+            if (c.IsRevealed)
+                return;
+            c.IsFlagged = !c.IsFlagged;
+            if (c.IsFlagged)
+                b.Foreground = Brushes.Red;
+            b.Content = c.IsFlagged ? "🚩" : string.Empty;
+            bombsLabel.Content = BombsCount - Cells.Where(cell => cell.IsFlagged).Count();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!IsPlaying)
+                return;
+            Button b = (Button)sender;
+            Cell c = (Cell)b.CommandParameter;
+            if (c.IsRevealed || c.IsFlagged)
+                return;
+            c.IsRevealed = true;
+            b.Background = Brushes.LightBlue;
         }
 
         private void UniformGrid_Loaded(object sender, RoutedEventArgs e)
